@@ -16,6 +16,6 @@ setup(
                       'tabulate==0.7.5'],
     entry_points="""\
 [console_scripts]
-swag = swag.__main__:main
+swag = startupthreads.__main__:main
 """,
     )

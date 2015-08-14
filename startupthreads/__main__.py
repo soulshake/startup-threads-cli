@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from bot import cli
+from swag import cli
 
 
 def main():
