@@ -41,10 +41,8 @@ class RestAPI:
         except requests.exceptions.ConnectionError, m:
             click.secho("NOK (requests.exceptions.ConnectionError): {}"
                         .format(m), fg='red')
-            return {'error': m}
         except:
             click.secho("NOK, unknown", fg='red')
-            return {'error': req.content}
 
         raise RequestError("{} // {}/{}"
                            .format(url, req.status_code, req.reason))
@@ -69,7 +67,6 @@ class RestAPI:
 
         except requests.exceptions.ConnectionError, m:
             click.secho("NOK: {}".format(m), fg='red')
-            return
 
         raise RequestError("{} // {}/{}"
                            .format(url, req.status_code, req.reason))
