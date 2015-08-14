@@ -2,23 +2,47 @@
 
 Send t-shirts from the command line.
 
+## Installation
+
+```
+$ git clone git@github.com:soulshake/startup-threads-cli.git
+$ cd startup-threads-cli/
+$ pip install .
+```
+
+
 # Setup
 
-You need to export your StartupThreads API key as an environment variable.
-
-Add the following line to your bash profile:
+Export your API key as an environment variable in your bash profile and source it:
 
 ```
-export STARTUPTHREADS_API_KEY=''
+$ echo "export STARTUP_THREADS_API_KEY abc123def456" >> ~/.bashrc && source ~/.bashrc
 ```
 
-Make sure to `source` your profile afterwards. You can check that it's set up correctly by running:
+You can check that it's set up correctly by running:
 
 ```
 echo $STARTUPTHREADS_API_KEY
 ```
 
+...which should display your API key.
+
+
 ## Commands
+
+```
+$ swag  --help
+Usage: swag [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  -h, --help  Show this message and exit.
+
+Commands:
+  giveaway   Create a new StartupThreads giveaway (i.e.
+  inventory  Call a function to display our StartupThreads...
+  send       create a new StartupThreads order
+  status     show the status of a StartupThreads order
+```
 
 ```
 $ swag inventory
