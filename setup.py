@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='startupthreads-cli',
-    version='0.1.11',
+    version='0.1.14',
     author='AJ Bowen',
     license='MIT',
     author_email='aj@gandi.net',
