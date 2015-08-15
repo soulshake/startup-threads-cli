@@ -5,6 +5,12 @@ Send t-shirts from the command line.
 ## Installation
 
 ```
+$ pip install startupthreads-cli
+```
+
+or:
+
+```
 $ git clone git@github.com:soulshake/startup-threads-cli.git
 $ cd startup-threads-cli/
 $ pip install .
