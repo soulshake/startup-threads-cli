@@ -6,7 +6,7 @@ setup(
     version='0.1.14',
     author='AJ Bowen',
     license='MIT',
-    author_email='aj@gandi.net',
+    author_email='aj@soulshake.net',
     packages=find_packages(),
     description='Startup Threads CLI',
     long_description=open('README.rst').read(),
