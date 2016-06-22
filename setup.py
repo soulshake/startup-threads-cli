@@ -12,7 +12,7 @@ setup(
     long_description=open('README.rst').read(),
     url='https://github.com/soulshake/startup-threads-cli',
     keywords='startup threads startupthreads cli swag shirts',
-    install_requires=['click==3.3',
+    install_requires=['click==6.0',
                       'arrow==0.5.4',
                       'requests==2.7.0',
                       'tabulate==0.7.5'],
