@@ -38,7 +38,7 @@ class RestAPI:
             else:
                 click.secho("NOK: {}".format(req.reason), fg='red')
                 return {'error': req.content}
-        except requests.exceptions.ConnectionError, m:
+        except requests.exceptions.ConnectionError as m:
             click.secho("NOK (requests.exceptions.ConnectionError): {}"
                         .format(m), fg='red')
         except:
@@ -65,7 +65,7 @@ class RestAPI:
                 click.secho("NOK: {}".format(req.reason), fg='red')
                 return json.loads(req.content)
 
-        except requests.exceptions.ConnectionError, m:
+        except requests.exceptions.ConnectionError as m:
             click.secho("NOK: {}".format(m), fg='red')
 
         raise RequestError("{} // {}/{}"

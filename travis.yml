@@ -1,0 +1,5 @@
+language: python
+sudo: false
+
+before_install:
+  - sudo apt-get -qq update
