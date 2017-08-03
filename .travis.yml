@@ -1,8 +1,7 @@
 language: python
 sudo: false
-dist: precise
 
 before_install:
-  - pip install --user .
+  - pip install .
 
 script: tox
