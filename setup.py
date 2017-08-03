@@ -15,7 +15,8 @@ setup(
     install_requires=['click==6.0',
                       'arrow==0.5.4',
                       'requests==2.7.0',
-                      'tabulate==0.7.5'],
+                      'tabulate==0.7.5',
+                      'tox==2.7.0'],
     entry_points="""\
 [console_scripts]
 swag = startupthreads.__main__:main
