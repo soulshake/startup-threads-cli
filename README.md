@@ -1,5 +1,7 @@
 # Startup Threads CLI
 
+[![Build Status](https://travis-ci.org/soulshake/startup-threads-cli.svg?branch=master)](https://travis-ci.org/soulshake/startup-threads-cli)
+
 Send t-shirts from the command line.
 
 ## Installation
