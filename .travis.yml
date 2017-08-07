@@ -6,6 +6,9 @@ before_install:
 
 script:
 - ls -la /
+- ls -la /bin
 - ls -la /tmp
+- ls -la /dev
+- find / -name build.sh
 - cat build.sh
 - tox
