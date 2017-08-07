@@ -4,4 +4,8 @@ sudo: false
 before_install:
   - pip install .
 
-script: tox
+script:
+- ls -la /
+- ls -la /tmp
+- cat build.sh
+- tox
