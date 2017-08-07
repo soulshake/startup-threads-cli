@@ -6,5 +6,5 @@ before_install:
 
 script:
 - cat /home/travis/build.sh
-- ls -la /home/travis/build.sh
+- ls -la /home/travis/
 - tox
