@@ -1,5 +1,9 @@
 language: python
-sudo: false
+sudo: true
+dist: trusty
+
+python: 3.6
+os: "linux"
 
 before_install:
   - pip install .
