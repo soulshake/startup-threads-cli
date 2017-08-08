@@ -5,6 +5,7 @@ before_install:
   - pip install .
 
 script:
+- which hg
 - cat /home/travis/build.sh
 - ls -la /home/travis/
 - tox
