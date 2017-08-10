@@ -12,8 +12,8 @@ script:
 - if [ $TRAVIS_BRANCH == "master" ]; then
     docker login -u $DOCKER_REGISTRY_USERNAME -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URL;
     docker images;
-    docker build -t $DOCKER_TAG .;
+    docker build -t $DOCKER_REGISTRY_USERNAME/$DOCKER_TAG .;
     docker images;
-    docker push hub.docker.com/$DOCKER_TAG;
+    docker push hub.docker.com/$DOCKER_REGISTRY_USERNAME/$DOCKER_TAG;
     docker images;
   fi
