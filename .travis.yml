@@ -10,7 +10,11 @@ before_install:
   - pip install .
 
 script:
-- which hg
-- cat /home/travis/build.sh
-- ls -la /home/travis/
 - tox
+- if [ $TRAVIS_BRANCH == "master" ]; then
+    sbt docker:publishLocal;
+    docker login -u $DOCKER_REGISTRY_USERNAME -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URL;
+    docker images;
+    docker push repo.treescale.com/foooo/bar/plant-simulator:1.0-SNAPSHOT;
+    docker push hub.docker.com/foooo/bar/plant-simulator:1.0-SNAPSHOT;
+  fi
