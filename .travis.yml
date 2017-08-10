@@ -1,7 +1,6 @@
 # language: python
 sudo: true
-dist: trusty
-language: __garnet__
+language: python
 
 python: 3.6
 os: "linux"
@@ -14,7 +13,7 @@ script:
 - if [ $TRAVIS_BRANCH == "master" ]; then
     sbt docker:publishLocal;
     docker login -u $DOCKER_REGISTRY_USERNAME -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URL;
+    docker build -t soulshake/startup-threads-cli/nonexistent .
     docker images;
-    docker push repo.treescale.com/foooo/bar/plant-simulator:1.0-SNAPSHOT;
-    docker push hub.docker.com/foooo/bar/plant-simulator:1.0-SNAPSHOT;
+    docker push hub.docker.com/$DOCKER_REGISTRY_USERNAME/startup-threads-cli/nonexistent
   fi
