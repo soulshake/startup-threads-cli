@@ -1,22 +1,14 @@
-sudo: true
-dist: trusty
 language: python
 
-python: 3.6
+python:
+- 2.7
+- 3.6
+
 os:
 - "linux"
 
 before_install:
-  uname -a
-  #- pip install .
+  - pip install .
 
 script:
-  - uname -a
-#- if [ $TRAVIS_BRANCH == "master" ]; then
-    #docker login -u $DOCKER_REGISTRY_USERNAME -p $DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY_URL;
-    #docker images;
-    #docker build -t $DOCKER_REGISTRY_USERNAME/$DOCKER_TAG .;
-    #docker images;
-    #docker push $DOCKER_REGISTRY_USERNAME/$DOCKER_TAG;
-    #docker images;
-  #fi
+  - tox
