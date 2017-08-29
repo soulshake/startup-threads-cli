@@ -13,6 +13,7 @@ services:
 - cassandra
 
 before_install:
+  - sudo service cassandra status
   - pip install .
 
 script:
