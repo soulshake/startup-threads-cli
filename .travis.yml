@@ -7,6 +7,9 @@ python:
 os:
 - "linux"
 
+services:
+  - cassandra
+
 before_install:
   - pip install .
 
@@ -14,8 +17,4 @@ script:
   - tox
 
 after_success:
-  - >-
-      curl
-      -H "Content-Type: application/json"
-      --data '{"source_type": "Branch", "source_name": "master"}'
-      -X POST "$DOCKER_HUB_TRIGGER_URL"
+  - curl -H "Content-Type: application/json" --data '{"source_type": "Branch", "source_name": "master"}' -X POST "$DOCKER_HUB_TRIGGER_URL"
