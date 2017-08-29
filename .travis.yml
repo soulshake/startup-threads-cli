@@ -7,8 +7,6 @@ python:
 os:
 - "linux"
 
-sudo: required
-
 services:
 - cassandra
 
