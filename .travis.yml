@@ -7,15 +7,17 @@ python:
 os:
 - "linux"
 
-services:
-- cassandra
+git:
+  lfs_skip_smudge: true
 
 before_install:
+  - echo -e "machine github.com\n  login $GITHUB_TOKEN" >> ~/.netrc
+  - git lfs pull
   - pip install .
 
 script:
-  - sudo service cassandra status
   - tox
+
 
 after_success:
   - >-
