@@ -20,8 +20,11 @@ script:
 
 
 after_success:
+  - echo $TRAVIS_PULL_REQUEST
   - >-
-      curl
-      -H "Content-Type: application/json"
-      --data '{"source_type": "Branch", "source_name": "master"}'
-      -X POST "$DOCKER_HUB_TRIGGER_URL"
+      if [[ $TRAVIS_PULL_REQUEST = 'false' ]]; then
+        curl \
+        -H "Content-Type: application/json" \
+        --data "{'source_type': 'Branch', 'source_name': '${TRAVIS_BRANCH}'}" \
+        -X POST "$DOCKER_HUB_TRIGGER_URL";
+      fi
