@@ -7,24 +7,19 @@ python:
 os:
 - "linux"
 
-git:
-  lfs_skip_smudge: true
-
 before_install:
-  - echo -e "machine github.com\n  login $GITHUB_TOKEN" >> ~/.netrc
-  - git lfs pull
   - pip install .
 
 script:
   - tox
 
-
 after_success:
   - echo $TRAVIS_PULL_REQUEST
+  - echo $TRAVIS_BRANCH
   - >-
       if [[ $TRAVIS_PULL_REQUEST = 'false' ]]; then
-        curl \
-        -H "Content-Type: application/json" \
-        --data "{'source_type': 'Branch', 'source_name': '${TRAVIS_BRANCH}'}" \
-        -X POST "$DOCKER_HUB_TRIGGER_URL";
+        curl -H "Content-Type: application/json" --data "$(sed s/@@BRANCH/$TRAVIS_BRANCH/ <<EOF
+        {"source_type": "Branch", "source_name": "@@BRANCH"} 
+        EOF
+        )" -X POST "$DOCKER_HUB_TRIGGER_URL";
       fi
