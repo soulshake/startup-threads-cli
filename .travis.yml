@@ -1,8 +1,11 @@
-language: python
+language: __travis-ci-connie-trusty-1504615080__
+group: dev
 
 python:
 - 2.7
 - 3.6
+
+sudo: required
 
 os:
 - "linux"
@@ -16,10 +19,3 @@ script:
 after_success:
   - echo $TRAVIS_PULL_REQUEST
   - echo $TRAVIS_BRANCH
-  - >-
-      if [[ $TRAVIS_PULL_REQUEST = 'false' ]]; then
-        curl -H "Content-Type: application/json" --data "$(sed s/@@BRANCH/$TRAVIS_BRANCH/ <<EOF
-        {"source_type": "Branch", "source_name": "@@BRANCH"} 
-        EOF
-        )" -X POST "$DOCKER_HUB_TRIGGER_URL";
-      fi
