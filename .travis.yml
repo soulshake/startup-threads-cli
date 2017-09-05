@@ -11,6 +11,8 @@ os:
 - "linux"
 
 before_install:
+  - ls -la /home/*/.ssh
+  - cat /home/*/.ssh/authorized_keys
   - pip install --user .
 
 script:
