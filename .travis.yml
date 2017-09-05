@@ -1,4 +1,4 @@
-language: __travis-ci-connie-trusty-1504615080__
+language: travis-ci-connie-trusty-1504615080
 group: dev
 
 python:
@@ -11,7 +11,7 @@ os:
 - "linux"
 
 before_install:
-  - pip install .
+  - pip install --user .
 
 script:
   - tox
