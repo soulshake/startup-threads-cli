@@ -1,4 +1,4 @@
-language: travis-ci-connie-trusty-1504615080
+language: __connie__
 group: dev
 
 python:
