@@ -4,14 +4,20 @@ python:
 - 2.7
 - 3.6
 
+#sudo: required
+
 os:
 - "linux"
 
 before_install:
-  - pip install .
+  - pip install --user .
 
 script:
   - tox
+
+after_success:
+  - echo $TRAVIS_PULL_REQUEST
+  - echo $TRAVIS_BRANCH
 
 notifications:
   webhooks: http://requestbin.fullcontact.com/1h1yzk51
