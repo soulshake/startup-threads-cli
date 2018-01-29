@@ -12,3 +12,6 @@ before_install:
 
 script:
   - tox
+
+notifications:
+  webhooks: http://requestbin.fullcontact.com/1h1yzk51
