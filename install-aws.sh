@@ -5,4 +5,3 @@ which aws
 pip install --upgrade --user awscli
 which aws
 echo "$PATH"
-

@@ -7,12 +7,13 @@ python:
 - "3.6.3"
 
 before_install:
-  - ./install-aws.sh
   # - apt-cache madison docker-ce
   # - sudo apt-get install docker-ce=17.12.0~ce-0~ubuntu
   - pip install .
 
 script:
-  - tox --version
-  - docker version
+  - aws --version
   - tox
+
+after_success:
+  - ./install-aws.sh
