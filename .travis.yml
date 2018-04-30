@@ -1,12 +1,15 @@
 language: python
 
+sudo: required
+
 python:
 - "2.7"
 - "3.6"
 
 before_install:
+  - apt-cache madison docker-ce
+  - sudo apt-get install docker-ce=17.12.0~ce-0~debian
   - pip install .
 
 script:
-  - curl http://169.254.169.254/latest/meta-data/
   - tox
