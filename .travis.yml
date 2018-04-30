@@ -7,11 +7,7 @@ python:
 - "3.6.3"
 
 before_install:
-  - sudo pip install --upgrade awscli
-  - which aws
-  - pip install --upgrade --user awscli
-  - which aws
-  - echo $PATH
+  - ./install-aws.sh
   # - apt-cache madison docker-ce
   # - sudo apt-get install docker-ce=17.12.0~ce-0~ubuntu
   - pip install .
