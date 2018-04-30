@@ -12,8 +12,8 @@ before_install:
   - pip install .
 
 script:
-  - aws --version
   - tox
 
 after_success:
   - ./install-aws.sh
+  - aws --version
