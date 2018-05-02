@@ -1,6 +1,6 @@
 language: python
 
-sudo: required
+#sudo: required
 
 python:
 - "2.7"
@@ -14,6 +14,6 @@ before_install:
 script:
   - tox
 
-after_success:
-  - ./install-aws.sh
-  - aws --version
+#after_success:
+  #- ./install-aws.sh
+  #- aws --version
