@@ -2,9 +2,9 @@ language: python
 
 #sudo: required
 
-python:
-- "2.7"
-- "3.6.3"
+#python:
+#- "2.7"
+#- "3.6.3"
 
 before_install:
   # - apt-cache madison docker-ce
