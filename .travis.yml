@@ -1,6 +1,6 @@
 language: python
 
-#sudo: required
+sudo: required
 
 python:
 - "2.7"
@@ -9,6 +9,8 @@ python:
 before_install:
   # - apt-cache madison docker-ce
   # - sudo apt-get install docker-ce=17.12.0~ce-0~ubuntu
+  - docker pull ubuntu
+  - docker run -ti ubuntu echo hello world
   - pip install .
 
 script:
