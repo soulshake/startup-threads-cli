@@ -20,10 +20,13 @@ script:
 
 notifications:
   slack:
+    rooms:
+      - travisci:6PKoW5khxrYKSYje7JIbd4yL
     on_success: change
     on_failure: change
 
 before_script:
+  - docker pull tutum/dnsutils
   - git config --global user.email "aj@soulshake.net"
   - git config --global user.name "Travis-CI"
 
