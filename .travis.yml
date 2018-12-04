@@ -16,4 +16,25 @@ services:
   #- pip install .
 
 script:
-  - check-dns-bits
+  - ./check-dns-bits
+
+notifications:
+  slack:
+    on_success: change
+    on_failure: change
+
+before_script:
+  - git config --global user.email "aj@soulshake.net"
+  - git config --global user.name "Travis-CI"
+
+after_script:
+  - git config credential.helper "store --file=.git/credentials"
+  - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+  - git commit --allow-empty "Empty commit from Travis"
+  - git push origin master
+
+after_failure:
+  - date -u
+
+after_success:
+  - date -u
