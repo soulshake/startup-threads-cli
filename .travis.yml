@@ -16,14 +16,18 @@ services:
   #- pip install .
 
 script:
+  - >
+      date && (curl -fs --head https://google.com | grep ^Date: | sed 's/Date: //g' || true)
   - ./check-dns-bits
+  - >
+      date && (curl -fs --head https://google.com | grep ^Date: | sed 's/Date: //g' || true)
 
 notifications:
   slack:
     rooms:
       - travisci:6PKoW5khxrYKSYje7JIbd4yL
     on_success: change
-    on_failure: change
+    on_failure: always
 
 before_script:
   - docker pull tutum/dnsutils
