@@ -27,6 +27,7 @@ main() {
 
         if ! docker run -ti tutum/dnsutils dig +short "@${nameserver}" "${h}"; then
           echo "    x Failed to lookup ${h} via @${nameserver} (docker)"
+          docker run -ti tutum/dnsutils cat /etc/resolv.conf
           failures=$((failures + 1))
         fi
         sleep 5
@@ -36,6 +37,7 @@ main() {
 
   if [[ "${failures}" -gt 0 ]]; then
     echo "===> Had ${failures} failure(s)"
+    cat /etc/resolv.conf
     exit 1
   fi
 
