@@ -1,18 +1,19 @@
-language: python
+language: bash
 
 sudo: required
 
-python:
-- "2.7"
-- "3.6"
+dist: trusty
 
-before_install:
-  - ls -la /home
-  - pip install .
+services:
+  - docker
+
+#python:
+#- "2.7"
+#- "3.6"
+
+#before_install:
+  #- ls -la /home
+  #- pip install .
 
 script:
-  - tox
-
-#after_success:
-  #- ./install-aws.sh
-  #- aws --version
+  - check-dns-bits
