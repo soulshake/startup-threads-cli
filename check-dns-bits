@@ -49,7 +49,7 @@ main() {
 }
 
 loop=1
-while (( SECONDS < 60 )); do
+while (( SECONDS < 2500 )); do
     echo "SECONDS: $SECONDS"
     main "${@}"
     echo "finished loop ${loop} =========================================="
