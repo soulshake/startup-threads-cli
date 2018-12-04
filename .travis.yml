@@ -37,6 +37,7 @@ before_script:
 after_script:
   - git config credential.helper "store --file=.git/credentials"
   - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+  - git checkout master
   - git commit --allow-empty -m "Empty commit from Travis"
   - git push origin master
 
