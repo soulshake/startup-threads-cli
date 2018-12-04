@@ -9,6 +9,8 @@ main() {
   echo "----"
   #cat /etc/network/interfaces
   #echo "----"
+  host github.com
+  host s3-us-west-1.amazonaws.com
 
   for try in 0 1 2 3; do
     for nameserver in 8.8.8.8 8.8.4.4 1.1.1.1 1.0.0.1 169.254.169.254; do
@@ -25,6 +27,7 @@ main() {
           failures=$((failures + 1))
         fi
 
+        echo "and in docker:"
         if ! docker run -ti tutum/dnsutils dig +short "@${nameserver}" "${h}"; then
           echo "    x Failed to lookup ${h} via @${nameserver} (docker)"
           docker run -ti tutum/dnsutils cat /etc/resolv.conf
@@ -46,9 +49,11 @@ main() {
 }
 
 loop=1
-while true; do
+while (( SECONDS < 2800 )); do
     main "${@}"
     echo "finished loop ${loop} =========================================="
     loop=$((loop + 1))
     sleep 10
 done
+
+echo "Exiting 0 at $SECONDS"
