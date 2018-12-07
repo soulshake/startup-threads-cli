@@ -16,6 +16,7 @@ services:
   #- pip install .
 
 script:
+  - docker ps
   - >
       date && (curl -fs --head https://google.com | grep ^Date: | sed 's/Date: //g' || true)
   - ./check-dns-bits
