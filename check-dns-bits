@@ -11,6 +11,8 @@ main() {
   #echo "----"
   host github.com
   host s3-us-west-1.amazonaws.com
+  echo "ipv4 forwarding on host: $(sysctl net.ipv4.ip_forward)"
+  echo "ipv4 forwarding in docker: $(docker run -ti tutum/dnsutils sysctl net.ipv4.ip_forward)"
 
   for try in 0 1 2 3; do
     for nameserver in 8.8.8.8 8.8.4.4 1.1.1.1 1.0.0.1 169.254.169.254; do
@@ -48,8 +50,9 @@ main() {
     exit 1
   fi
 
+  echo "ipv4 forwarding on host: $(sysctl net.ipv4.ip_forward)"
+  echo "ipv4 forwarding in docker: $(docker run -ti tutum/dnsutils sysctl net.ipv4.ip_forward)"
   echo "===> Much Success"
-  #exit 0
 }
 
 loop=1
@@ -62,6 +65,3 @@ while (( SECONDS < 2500 )); do
 done
 
 echo "Exiting 0 at $SECONDS"
-
-
-Maybe something that starts or upgrades daemons..
