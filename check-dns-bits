@@ -31,6 +31,10 @@ main() {
         if ! docker run -ti tutum/dnsutils dig +short "@${nameserver}" "${h}"; then
           echo "    x Failed to lookup ${h} via @${nameserver} (docker)"
           docker run -ti tutum/dnsutils cat /etc/resolv.conf
+
+          # https://blog.stangroome.com/2017/08/16/beware-docker-and-sysctl-defaults-on-gce/
+          echo "ipv4 forwarding on host: $(sysctl net.ipv4.ip_forward)"
+          echo "ipv4 forwarding in docker: $(docker run -ti tutum/dnsutils sysctl net.ipv4.ip_forward)"
           failures=$((failures + 1))
         fi
         sleep 5
@@ -58,3 +62,6 @@ while (( SECONDS < 2500 )); do
 done
 
 echo "Exiting 0 at $SECONDS"
+
+
+Maybe something that starts or upgrades daemons..
