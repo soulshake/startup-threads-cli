@@ -16,9 +16,9 @@ services:
   #- pip install .
 
 env:
-global:
-- DOCKER_COMPOSE_VERSION=1.22.0
-- IMAGE_TAG_CI=$TRAVIS_PULL_REQUEST_SHA-ci
+  global:
+    - DOCKER_COMPOSE_VERSION=1.22.0
+    - IMAGE_TAG_CI=$TRAVIS_PULL_REQUEST_SHA-ci
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
