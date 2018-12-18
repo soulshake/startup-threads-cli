@@ -24,7 +24,7 @@ env:
     - IMAGE_TAG_CI=$TRAVIS_PULL_REQUEST_SHA-ci
 
 before_install:
-  - echo "net.ipv4.ip_forward = 1" > /etc/sysctl.d/99-ipv4-forward-pls.conf`
+  - echo "net.ipv4.ip_forward = 1" > /etc/sysctl.d/99-ipv4-forward-pls.conf
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
