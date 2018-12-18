@@ -2,6 +2,7 @@ language: bash
 
 sudo: required
 
+group: dev
 #dist: trusty
 
 services:
