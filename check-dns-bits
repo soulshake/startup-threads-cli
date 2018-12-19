@@ -18,18 +18,7 @@ main() {
     for nameserver in 8.8.8.8 8.8.4.4 1.1.1.1 1.0.0.1 169.254.169.254; do
       for h in github.com s3-us-west-1.amazonaws.com; do
 
-        echo "---> $(date -u): try ${try} ${h} via ${nameserver}:"
-        if ! dig +short "@${nameserver}" "${h}"; then
-          echo "    x Failed to lookup ${h} via ${nameserver}"
-          failures=$((failures + 1))
-        fi
-
-        if ! dig -6 +short "@${nameserver}" "${h}"; then
-          echo "    x Failed to lookup ${h} via ${nameserver}"
-          failures=$((failures + 1))
-        fi
-
-        echo "and in docker:"
+        echo "in docker:"
         if ! docker run -ti tutum/dnsutils dig +short "@${nameserver}" "${h}"; then
           echo "    x Failed to lookup ${h} via @${nameserver} (docker)"
           docker run -ti tutum/dnsutils cat /etc/resolv.conf
@@ -39,7 +28,7 @@ main() {
           echo "ipv4 forwarding in docker: $(docker run -ti tutum/dnsutils sysctl net.ipv4.ip_forward)"
           failures=$((failures + 1))
         fi
-        sleep 5
+        sleep 60
       done
     done
   done
