@@ -4,10 +4,11 @@ script:
   - sleep 1
 
 notifications:
-  webhooks: http://soulshake.ngrok.io/services/travis/gwos
-    on_success: always # default: always
+  webhooks:
+    urls:
+      - http://soulshake.ngrok.io/services/travis/gwos
+    on_success: change # default: always
     on_failure: always # default: always
-    on_start: always   # default: never
+    on_start: change   # default: never
     on_cancel: always # default: always
     on_error: always # default: always
-
