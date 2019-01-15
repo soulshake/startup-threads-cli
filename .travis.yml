@@ -1,14 +1,67 @@
+sudo: required
+
 language: bash
 
+dist: xenial
+#dist: trusty
+
+services:
+  - docker
+
+#python:
+#- "2.7"
+#- "3.6"
+
+#before_install:
+  #- ls -la /home
+  #- pip install .
+
+env:
+  global:
+    - DOCKER_COMPOSE_VERSION=1.22.0
+    - IMAGE_TAG_CI=$TRAVIS_PULL_REQUEST_SHA-ci
+
+before_install:
+  #- echo "net.ipv4.ip_forward = 1" | sudo tee /etc/sysctl.d/99-ipv4-forward-pls.conf
+  - sudo ls -la /etc/sysctl.d/
+  - sudo cat /etc/sysctl.d/*
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - docker version && docker-compose version
+  - cat /etc/sysctl.d/99-travis-disable-ipv6.conf
+  - ls -la /etc/sysctl.d
+
 script:
-  - sleep 1
+  - docker ps
+  - >
+      date && (curl -fs --head https://google.com | grep ^Date: | sed 's/Date: //g' || true)
+  - ./check-dns-bits
+  - >
+      date && (curl -fs --head https://google.com | grep ^Date: | sed 's/Date: //g' || true)
 
 notifications:
-  webhooks:
-    urls:
-      - http://soulshake.ngrok.io/services/travis/gwos
-    on_success: change # default: always
-    on_failure: always # default: always
-    on_start: change   # default: never
-    on_cancel: always # default: always
-    on_error: always # default: always
+  slack:
+    rooms:
+      - travisci:6PKoW5khxrYKSYje7JIbd4yL
+    on_success: change
+    on_failure: always
+
+before_script:
+  - docker pull tutum/dnsutils
+  - git config --global user.email "aj@soulshake.net"
+  - git config --global user.name "Travis-CI"
+
+after_script:
+  - git config credential.helper "store --file=.git/credentials"
+  - echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+  - git checkout master
+  - git commit --allow-empty -m "Empty commit from Travis"
+  - git push origin master
+
+after_failure:
+  - date -u
+
+after_success:
+  - date -u
