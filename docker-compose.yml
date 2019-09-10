@@ -1,0 +1,9 @@
+version: "3"
+services:
+  blah:
+    image: soulshake/startup-threads-cli:latest
+    restart: always
+    command: sleep 9999
+    #command: sleep 9999999
+
+
